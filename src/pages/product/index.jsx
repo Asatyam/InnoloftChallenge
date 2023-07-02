@@ -10,6 +10,7 @@ import Nav from '@/components/Nav';
 import axios from 'axios';
 import Description from '@/components/Description';
 import Details from '@/components/Details';
+import Video from '@/components/Video';
 
 export default function ProductView({config}) {
   const dispatch = useDispatch();
@@ -24,7 +25,8 @@ export default function ProductView({config}) {
     }
   }, [status, dispatch]);
 
-  if (status === 'loading') {
+  
+  if (status !== 'succeeded') {
     return (
       <>
       <Nav config={config}/>
@@ -40,6 +42,7 @@ export default function ProductView({config}) {
       <main className='py-4'>
         <Description/>
         <Details/>
+        <Video/>
         </main>
     </main>
   );
