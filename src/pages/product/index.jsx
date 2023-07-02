@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AtomicSpinner from 'atomic-spinner';
 import Nav from '@/components/Nav';
 import axios from 'axios';
+import Description from '@/components/Description';
 
 export default function ProductView({config}) {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export default function ProductView({config}) {
     return (
       <>
       <Nav config={config}/>
-      <div className='flex justify-center items-center'>
+      <div className=' flex justify-center items-center'>
         <AtomicSpinner />
       </div>
       </>
@@ -35,8 +36,9 @@ export default function ProductView({config}) {
   return (
     <main>
       <Nav config={config}/>
-      {product.status}
-      hello
+      <main className='py-4'>
+        <Description/>
+        </main>
     </main>
   );
 }

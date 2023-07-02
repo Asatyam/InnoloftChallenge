@@ -41,4 +41,4 @@ export const fetchProduct = createAsyncThunk(
   }
 );
 
-export const selectProduct = (state) => state.product;
+export const selectProduct = (state) => state.product.product;
