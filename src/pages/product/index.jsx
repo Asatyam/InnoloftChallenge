@@ -9,6 +9,7 @@ import AtomicSpinner from 'atomic-spinner';
 import Nav from '@/components/Nav';
 import axios from 'axios';
 import Description from '@/components/Description';
+import Details from '@/components/Details';
 
 export default function ProductView({config}) {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ export default function ProductView({config}) {
     }
   }, [status, dispatch]);
 
-  if (status == 'loading') {
+  if (status === 'loading') {
     return (
       <>
       <Nav config={config}/>
@@ -38,6 +39,7 @@ export default function ProductView({config}) {
       <Nav config={config}/>
       <main className='py-4'>
         <Description/>
+        <Details/>
         </main>
     </main>
   );

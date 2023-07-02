@@ -7,7 +7,7 @@ export default function Nav({config}){
 
 
     return(
-        <nav className="p-4 flex gap-3 items-center justify-between bg-cyan-100 md:px-8 lg:px-16"> 
+        <nav className="p-4 flex gap-3 items-center justify-between bg-violet-400 md:px-8 lg:px-16"> 
             <section>
                 <img className = "text-white h-10 w-50 "src = {config.logo} alt="logo"/>
             </section>
