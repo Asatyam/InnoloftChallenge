@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "@tinymce/tinymce-react": "^4.3.0",
     "atomic-spinner": "^1.2.5",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
