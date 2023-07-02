@@ -2,13 +2,14 @@
 
 import axios from 'axios';
 export default async function handler(req, res) {
-  if (req.METHOD == 'GET') {
+  console.log(req.method);
+  if (req.method == 'GET') {
     const response = await axios.get(
       'https://api-test.innoloft.com/product/6781'
     );
     const result = await response.data;
     return res.send({ result });
-  } else if (req.METHOD === 'PUT') {
+  } else if (req.method === 'PUT') {
     const response = await axios.put(
       'https://api-test.innoloft.com/product/6781'
     );

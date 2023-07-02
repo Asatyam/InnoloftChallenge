@@ -1,5 +1,5 @@
 import '@/styles/globals.css'
-import { Provider } from 'react-redux'
+import { Providers } from '@/components/providers';
 import axios from 'axios'
 import { store } from '@/store/store';
 
@@ -7,7 +7,7 @@ import { store } from '@/store/store';
 
 export default function App({ Component, pageProps }) {
   return (
-  <Provider store={store}>
+  <Providers>
     <Component {...pageProps} />
-  </Provider>)
+  </Providers>)
 }
