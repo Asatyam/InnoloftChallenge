@@ -1,3 +1,25 @@
+
+To start the website on your local environment, 
+- Clone the repository in your desired directory
+   <br> `git clone https://github.com/Asatyam/InnoloftChallenge.git`
+- cd into the directory
+- create a .env.local file and add your own  TINY MCE editor API Key using the key name NEXT_PUBLIC_API_KEY
+- Run 
+    `npm install next`
+- start the repository by running
+  `npm run dev`
+- Go to shown url in the terminal
+
+
+
+
+
+
+
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
