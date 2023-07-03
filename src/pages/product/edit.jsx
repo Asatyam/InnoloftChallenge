@@ -79,13 +79,28 @@ export default function ProductEdit({config, trlOptions}) {
    const modified =  categories.filter(category=>category.id !== cId);
     setCategories(modified);
   }
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    const formData = {
+      ...product,
+      categories,
+      businessModels: models,
+      trl,
+      description,
+    }
+    axios.put('/api/product',formData)
+    .then(console.log)
+    .catch(console.log);
+
+
+  }
   
   return (
     <main>
       <Nav config={config}/>
       <main className='py-4'>
         <h1 className='font-bold text-lg'>Edit Product Details</h1>
-        <form className='p-3 flex flex-col' onSubmit={e=>e.preventDefault()}>
+        <form  className='p-3 flex flex-col' onSubmit={handleSubmit}>
             <div className='p-2 border-2 m-2 '>
                 <label htmlFor='description' className='font-bold p-2 m-2 my-4'>Description</label>
                 <TinyEditor id='description' description = {description} setDescription = {setDescription}/>
@@ -125,7 +140,7 @@ export default function ProductEdit({config, trlOptions}) {
           </div>
 
               <div className='flex justify-evenly '>
-                <button type='submit' className='p-1 px-2 text-lg font-semibold hover:bg-indigo-900 transition  text-center border-2 border-cyan-300 bg-indigo-500 text-white  '>Submit</button>
+                <button  type='submit' className='p-1 px-2 text-lg font-semibold hover:bg-indigo-900 transition  text-center border-2 border-cyan-300 bg-indigo-500 text-white  '>Submit</button>
                 <button onClick={handleReset} className='p-1 px-2 text-lg font-semibold hover:bg-indigo-900 transition  text-center border-2 border-cyan-300 bg-indigo-500 text-white  '>Reset</button>
               </div>
         </form>

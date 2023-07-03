@@ -11,8 +11,10 @@ export default async function handler(req, res) {
     return res.send({ result });
   } else if (req.method === 'PUT') {
     const response = await axios.put(
-      'https://api-test.innoloft.com/product/6781'
+      'https://api-test.innoloft.com/product/6781',req.body
     );
-    return res.status(200).send({ response });
+    console.log('requested');
+    console.log(response.data);
+    return res.status(200).send(response.data);
   }
 }
