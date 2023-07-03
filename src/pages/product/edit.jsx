@@ -4,6 +4,7 @@ import {
   productSlice,
   selectProduct,
   fetchProduct,
+  updateProduct
 } from '@/store/product/productSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import AtomicSpinner from 'atomic-spinner';
@@ -23,7 +24,7 @@ export default function ProductEdit({config, trlOptions}) {
   const [description, setDescription] = useState('');
   const [categories, setCategories] = useState([]);
   const [models, setModels] = useState([]);
-  const [trl ,setTrl] = useState('');
+  const [trl ,setTrl] = useState({});
 
   const [category, setCategory] = useState('');
   const [model, setModel] = useState('');
@@ -79,6 +80,15 @@ export default function ProductEdit({config, trlOptions}) {
    const modified =  categories.filter(category=>category.id !== cId);
     setCategories(modified);
   }
+  const handleTrl = (e)=>{
+    const index = e.target.selectedIndex;
+    const el = e.target.childNodes[index];
+    const option = el.getAttribute('id');
+    setTrl({
+      id:option,
+      name:e.target.value
+    });
+  }
   const handleSubmit = (e)=>{
     e.preventDefault();
     const formData = {
@@ -92,7 +102,7 @@ export default function ProductEdit({config, trlOptions}) {
     .then(console.log)
     .catch(console.log);
 
-
+    dispatch(updateProduct(formData));
   }
   
   return (
@@ -133,9 +143,9 @@ export default function ProductEdit({config, trlOptions}) {
           </div>
           <div  className='p-2 border-2  m-2 flex flex-col gap-4 ' >
              <label className='font-semibold ' htmlFor='trl'>TRL</label>
-             <select name='trl' id='trl' className=' bg-cyan-600 text-white p-1 outline-none rounded' value={trl} onChange={e=>setTrl(e.target.value)}>
+             <select name='trl' id='trl' className=' bg-cyan-600 text-white p-1 outline-none rounded' value={trl.name} onChange={handleTrl} >
               <option value = '' disabled>Select a TRL</option>
-              {trlOptions.map(trl=>(<option key={trl.id}>{trl.name}</option>))}
+              {trlOptions.map(trl=>(<option key={trl.id} id={trl.id}>{trl.name}</option>))}
               </select>
           </div>
 

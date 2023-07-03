@@ -13,9 +13,9 @@ export const productSlice = createSlice({
   initialState,
 
   reducers: {
-    // increment: (state)=>{
-    //     state.value += 1
-    // }
+    updateProduct: (state,action)=>{
+        state.product = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -40,5 +40,7 @@ export const fetchProduct = createAsyncThunk(
     return response.data.result;
   }
 );
+
+export const {updateProduct} = productSlice.actions
 
 export const selectProduct = (state) => state.product.product;
