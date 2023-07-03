@@ -11,12 +11,20 @@ import axios from 'axios';
 import TinyEditor from '@/components/TinyEditor';
 
 
-export default function ProductEdit({config}) {
-  const dispatch = useDispatch();
+export default function ProductEdit({config, trlOptions}) {
+
   const product = useSelector(selectProduct);
+  const dispatch = useDispatch();
 
   const status = useSelector((state) => state.product.status);
   const error = useSelector((state) => state.product.error);
+
+  const [description, setDescription] = useState('');
+  const [categories, setCategories] = useState([]);
+  const [models, setModels] = useState([]);
+  const [trl ,setTrl] = useState('');
+
+  console.log(product,status )
 
   useEffect(() => {
     if (status === 'idle') {
@@ -24,10 +32,14 @@ export default function ProductEdit({config}) {
     }
   }, [status, dispatch]);
 
-  const [description, setDescription] = useState(product.description);
-  const [categories, setCategories] = useState(product.categories);
-  const [models, setModels] = useState(product.businessModels);
-  const [trl ,setTrl] = useState(product.trl);
+  useEffect(()=>{
+    if (status === 'succeeded'){
+      setCategories(product.categories);
+      setDescription(product.description);
+      setModels(product.businessModels);
+      setTrl(product.trl);
+    }
+  },[status, product]);
   
   if (status !== 'succeeded') {
     return (
@@ -39,13 +51,14 @@ export default function ProductEdit({config}) {
       </>
     );
   }
+  
   return (
     <main>
       <Nav config={config}/>
       <main className='py-4'>
         <h1 className='font-bold text-lg'>Edit Product Details</h1>
-        <form className='p-3 border-2 flex flex-col' onSubmit={e=>e.preventDefault()}>
-            <div>
+        <form className='p-3 flex flex-col' onSubmit={e=>e.preventDefault()}>
+            <div className='p-2 border-2 m-2 '>
                 <label htmlFor='description' className='font-bold p-2 m-2 my-4'>Description</label>
                 <TinyEditor id='description'/>
             </div>
@@ -69,14 +82,11 @@ export default function ProductEdit({config}) {
               )
             })}
           </div>
-          <div  className='p-2 border-2  m-2 flex gap-4 ' >
+          <div  className='p-2 border-2  m-2 flex flex-col gap-4 ' >
              <label className='font-semibold ' htmlFor='trl'>TRL</label>
-             <select name='trl' id='trl' className='bg-slate-200 outline-none rounded'>
+             <select name='trl' id='trl' className=' bg-slate-200 outline-none rounded'>
               <option value = '' disabled>Select a TRL</option>
-              <option value = ''>A</option>
-              <option value = ''>A</option>
-              <option value = ''>A</option>
-              <option value = ''>A</option>
+              {trlOptions.map(trl=>(<option key={trl.id}>{trl.name}</option>))}
               </select>
           </div>
             <button type='submit' className='p-1 px-2 text-lg font-semibold hover:bg-indigo-900 transition  text-center border-2 border-cyan-300 bg-indigo-500 text-white mx-auto '>Submit</button>
@@ -90,9 +100,13 @@ export const getStaticProps = async () => {
   const res = await axios.get(
     `https://api-test.innoloft.com/configuration/${process.env.APP_ID || 1}`
   );
+  const res2 = await axios.get(
+    `https://api-test.innoloft.com/trl`
+  );
   const config = res.data;
+  const trlOptions = res2.data
 
   return {
-    props: { config },
+    props: { config, trlOptions },
   };
 };
