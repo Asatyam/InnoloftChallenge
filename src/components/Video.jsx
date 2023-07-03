@@ -27,7 +27,7 @@ export default function Video() {
   const product = useSelector(selectProduct);
 
   return (
-    <section className='p-4 m-2 border-2 lg:mx-20'>
+    <section className='p-4 m-2 border-2 '>
      <p className='font-bold text-center text-lg my-2 '>Video</p>
       <div className="p-2 relative pb-[56.25%] h-0 max-h-96">
        <iframe

@@ -16,7 +16,7 @@ export default function Description(){
 
 
     return(
-       <section className="m-1 gap-4 border-4 p-2 grid md:grid-cols-2  lg:mx-20">
+       <section className="m-1 gap-4 border-4 p-2 grid md:grid-cols-2 ">
         <div className="border-2 h-72 md:h-full">
             <img src={product.picture}
              alt="Product-image"

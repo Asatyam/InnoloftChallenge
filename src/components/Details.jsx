@@ -11,7 +11,7 @@ export default function Details(){
     const product = useSelector(selectProduct);
 
     return(
-        <section className="m-2 text-sm p-4 gap-2 border-black border-2 grid md:grid-cols-2 md:place-content-center px-8 lg:mx-20 ">
+        <section className="m-2 text-sm p-4 gap-2 border-black border-2 grid md:grid-cols-2 md:place-content-center px-8  ">
         
             <div className="w-fit ">
             Technology
