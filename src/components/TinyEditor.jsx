@@ -1,19 +1,19 @@
  import React, { useRef } from 'react';
  import { Editor } from '@tinymce/tinymce-react';
 
- export default function TinyEditor() {
-   const editorRef = useRef(null);
+ export default function TinyEditor({ description, setDescription}) {
+
    const log = () => {
-     if (editorRef.current) {
-       console.log(editorRef.current.getContent());
-     }
+    console.log(description,'hello');
    };
    return (
      <>
        <Editor
         apiKey={process.env.NEXT_PUBLIC_API_KEY}
-         onInit={(evt, editor) => editorRef.current = editor}
-         initialValue="<p>This is the initial content of the editor.</p>"
+         value={description}
+         onEditorChange={(newValue, editor)=>{
+          setDescription(newValue);
+         }}
          init={{
            height: 500,
            menubar: false,
