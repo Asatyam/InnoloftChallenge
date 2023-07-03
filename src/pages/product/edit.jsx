@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import {
   productSlice,
   selectProduct,
@@ -24,6 +24,10 @@ export default function ProductEdit({config}) {
     }
   }, [status, dispatch]);
 
+  const [description, setDescription] = useState(product.description);
+  const [categories, setCategories] = useState(product.categories);
+  const [models, setModels] = useState(product.businessModels);
+  const [trl ,setTrl] = useState(product.trl);
   
   if (status !== 'succeeded') {
     return (
@@ -40,12 +44,42 @@ export default function ProductEdit({config}) {
       <Nav config={config}/>
       <main className='py-4'>
         <h1 className='font-bold text-lg'>Edit Product Details</h1>
-        <form className='p-3 border-2' onSubmit={e=>e.preventDefault()}>
+        <form className='p-3 border-2 flex flex-col' onSubmit={e=>e.preventDefault()}>
             <div>
-                <label htmlFor='description' className='font-bold p-2 m-2'>Description</label>
-                <TinyEditor/>
+                <label htmlFor='description' className='font-bold p-2 m-2 my-4'>Description</label>
+                <TinyEditor id='description'/>
             </div>
-            
+          <div className='p-2 border-2 m-2 '>
+            <label className='font-semibold' htmlFor='categories'>Categories</label>
+            {categories.map((category)=>{
+              return(
+                <div key={category.id}>
+                <p>{category.name}</p>
+                </div>
+              )
+            })}
+          </div>
+          <div  className='p-2 border-2 m-2 '>
+            <label className='font-semibold' htmlFor='models'>Business Models</label>
+            {models.map((model)=>{
+              return(
+                <div key={model.id}>
+                <p>{model.name}</p>
+                </div>
+              )
+            })}
+          </div>
+          <div  className='p-2 border-2  m-2 flex gap-4 ' >
+             <label className='font-semibold ' htmlFor='trl'>TRL</label>
+             <select name='trl' id='trl' className='bg-slate-200 outline-none rounded'>
+              <option value = '' disabled>Select a TRL</option>
+              <option value = ''>A</option>
+              <option value = ''>A</option>
+              <option value = ''>A</option>
+              <option value = ''>A</option>
+              </select>
+          </div>
+            <button type='submit' className='p-1 px-2 text-lg font-semibold hover:bg-indigo-900 transition  text-center border-2 border-cyan-300 bg-indigo-500 text-white mx-auto '>Submit</button>
         </form>
         </main>
     </main>
