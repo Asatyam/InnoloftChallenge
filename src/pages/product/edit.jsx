@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { Suspense, useEffect, useState } from 'react';
 import {
   productSlice,
@@ -66,25 +67,31 @@ export default function ProductEdit({config, trlOptions}) {
             <label className='font-semibold' htmlFor='categories'>Categories</label>
             {categories.map((category)=>{
               return(
-                <div key={category.id}>
-                <p>{category.name}</p>
+                <div key={category.id} className='flex '>
+                <p className='bg-cyan-600 text-sm p-1 text-white rounded-lg  m-2 w-fit'>{category.name}  </p>
+                <button className=' w-6 h-6 m-2 '><img className='h-full'  src='/delete.png' alt='delete icon '/></button>
                 </div>
               )
             })}
+            <input placeholder='Add more categories' className=' bg-cyan-900 border-cyan-400 border-2 px-2 p-1 m-2 rounded text-white outline-none' />
+            <button className=' px-2 text-lg font-semibold hover:bg-indigo-900 transition  text-center border-2 border-cyan-300 bg-indigo-500 text-white mx-auto'> Add</button>
           </div>
           <div  className='p-2 border-2 m-2 '>
             <label className='font-semibold' htmlFor='models'>Business Models</label>
             {models.map((model)=>{
               return(
-                <div key={model.id}>
-                <p>{model.name}</p>
+                <div key={model.id} className='flex'>
+                <p className='bg-cyan-600 text-sm p-1 text-white rounded-lg  m-2 w-fit'>{model.name}</p>
+                <button className=' w-6 h-6 m-2 '><img className='h-full'  src='/delete.png' alt='delete icon '/></button>
                 </div>
               )
             })}
+            <input placeholder='Add More Models' className=' bg-cyan-900 border-cyan-400 border-2 px-2 p-1 m-2 rounded text-white outline-none' />
+            <button className=' px-2 text-lg font-semibold hover:bg-indigo-900 transition  text-center border-2 border-cyan-300 bg-indigo-500 text-white mx-auto'> Add</button>
           </div>
           <div  className='p-2 border-2  m-2 flex flex-col gap-4 ' >
              <label className='font-semibold ' htmlFor='trl'>TRL</label>
-             <select name='trl' id='trl' className=' bg-slate-200 outline-none rounded'>
+             <select name='trl' id='trl' className=' bg-cyan-600 text-white p-1 outline-none rounded'>
               <option value = '' disabled>Select a TRL</option>
               {trlOptions.map(trl=>(<option key={trl.id}>{trl.name}</option>))}
               </select>
